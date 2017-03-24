@@ -5,7 +5,7 @@
 
 
 ## Links / Sample Output
-#### /date/<date> ####
+#### /date/\<date\> ####
 
 
 Bill Maher appeared on The Daily Show on 11/18/99 and is known to be a(n) comedian.  
