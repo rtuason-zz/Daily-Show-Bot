@@ -1,5 +1,3 @@
-import sys
-
 from data_import import fetch_guest_list
 from flask import Flask
 
@@ -124,7 +122,7 @@ def get_dates_from_guest(name):
 def get_most_popular_in_group(group):
   all_groups = get_groups()
 
-  if group.lower() not in all_groups:
+  if group.title() not in all_groups:
     return create_invalid_group_resp(group, all_groups)
   else:
     guests = defaultdict(int)
@@ -132,14 +130,16 @@ def get_most_popular_in_group(group):
       if group.lower() == guest_info['Group'].lower():
         guests[guest_info['Raw_Guest_List']] += 1
 
-    top_guests = sorted(guests, key=guests.get, reverse=True)[:3]
+    num_picks = min(5, len(guests))
+
+    top_guests = sorted(guests, key=guests.get, reverse=True)[:num_picks]
     top_guests = ["{guest} ({num_times}) ({wiki_link})".format(
       guest=guest,
       num_times=guests[guest],
       wiki_link="<a href='{link}'>{link}</a>".format(link=BASE_WIKI_URL + guest)
     ) for guest in top_guests]
 
-    output = "Within the '{group}' group, the following guests appeared the most:<br>{top_guests}<br>".format(
+    output = "Within the '{group}' group, the following three guests appeared the most:<br>{top_guests}<br>".format(
       group=group.lower(),
       top_guests="<br>".join(top_guests)
     )
@@ -193,7 +193,7 @@ def get_guests_by_year_group(year, group):
           wiki_link="<a href='{link}'>{link}</a>".format(link=BASE_WIKI_URL + guest_info['Raw_Guest_List'])
         )
     else:
-      output = "In {year}, no guests from the '{group}' group appeared on The Daily Show:<br>".format(
+      output = "In {year}, no guests from the '{group}' group appeared on The Daily Show<br>".format(
         year=year,
         group=group.lower()
       )
