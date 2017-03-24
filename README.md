@@ -15,6 +15,9 @@ This bot runs on Flask, a micro web framework written in Python. When it is init
 
 
 ## Links / Sample Output
+
+**Note: While the Wikipedia URLs below appear broken, clicking the real links provided by Flask in the browser work fine.
+
 #### /date/\<date\> ####
 Given a properly formatted date (e.g. 10-21-03), the bot presents the guest(s) for that day, what their occupation is, other dates in which they appeared on The Daily Show, and a Wikipedia URL for learning more about them. For example, the input "/date/11-18-99" gives us:
 
