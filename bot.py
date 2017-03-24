@@ -139,7 +139,7 @@ def get_most_popular_in_group(group):
       wiki_link="<a href='{link}'>{link}</a>".format(link=BASE_WIKI_URL + guest)
     ) for guest in top_guests]
 
-    output = "Within the '{group}' group, the following three guests appeared the most:<br>{top_guests}<br>".format(
+    output = "Within the '{group}' group, the following guests appeared the most:<br>{top_guests}<br>".format(
       group=group.lower(),
       top_guests="<br>".join(top_guests)
     )
